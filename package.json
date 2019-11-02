@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "bookshelf": "^1.0.1",
+    "express": "^4.17.1",
+    "knex": "^0.20.1",
+    "mysql": "^2.17.1"
+  },
+  "name": "ngBootstrap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jaredrwight <20687190+Trail3lazer@users.noreply.github.com>",
+  "license": "MIT"
+}

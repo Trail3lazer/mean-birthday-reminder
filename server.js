@@ -2,22 +2,24 @@ require("dotenv").config();
 var express = require("express");
 var db = require("./models");
 var app = express();
+var path = require("path")
+var PORT = process.env.PORT || 3000;
 
 // Bookshelf setup
 const knex = require('knex')({
     client: 'mysql',
-    connection: process.env.MYSQL_DATABASE_CONNECTION
-  })
-  const bookshelf = require('bookshelf')(knex)
-
-var PORT = process.env.PORT || 3000;
+    connection: process.env.JAWSDB_URL
+})
+const bookshelf = require('bookshelf')(knex)
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-require("./routes/apiRoutes")(app);
+app.get('/*',(req, res)=>{
+    res.send(__dirname+'/client/dist/ngBootstrap')
+})
 
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {

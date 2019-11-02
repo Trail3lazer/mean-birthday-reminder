@@ -13,6 +13,7 @@
   "author": "jaredrwight <20687190+Trail3lazer@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"node server.js\" \"cd ./client && ng serve\""
+    "dev": "concurrently \"node server.js\" \"cd ./client && npm start\"",
+    "start": "node server.js"
   }
 }

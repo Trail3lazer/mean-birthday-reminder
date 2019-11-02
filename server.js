@@ -10,7 +10,8 @@ const knex = require('knex')({
     client: 'mysql',
     connection: process.env.JAWSDB_URL
 })
-const bookshelf = require('bookshelf')(knex)
+const bookshelf = require('bookshelf')(knex);
+const db = require('./models')
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get('/*',(req, res)=>{
-    res.send(__dirname+'/client/dist/ngBootstrap')
+    res.send(path.join(__dirname,'/client/dist/ngBootstrap'))
 })
 
 db.sequelize.sync(syncOptions).then(function() {
@@ -27,4 +28,8 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 
-module.exports = app;
+module.exports = {
+    knex: knex,
+    bookshelf: bookshelf, 
+    db: db
+};

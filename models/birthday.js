@@ -1,5 +1,5 @@
-const { bookshelf } = require('../server')
-module.exports = bookshelf.model('Birthday', {
+const bookshelf = require('../server').bookshelf
+module.exports = bookshelf.Model.extend({
     tableName: 'birthdays',
     hasTimestamps: true,
     

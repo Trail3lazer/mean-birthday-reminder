@@ -1,4 +1,4 @@
-const { bookshelf } = require('../server')
+const bookshelf = require('../server').bookshelf
 
 module.exports = bookshelf.Model.extend({
     tableName: 'users',

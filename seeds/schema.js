@@ -1,4 +1,4 @@
-let { knex } = require("../server")
+let knex = require("../server").knex;
 
 knex.schema.createTable('users', function(table) {
     table.increments();

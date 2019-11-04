@@ -1,11 +1,24 @@
-const bookshelf = require('../server').bookshelf
+const {sequelize, Sequelize}= require('../server')
 
-module.exports = bookshelf.Model.extend({
-    tableName: 'users',
-    hasTimestamps: true,
-
-    verifyPassword: function(password) {
-        return this.get('password') === password;
+module.exports = sequelize.define('user', {
+    // attributes
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-});
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    date: {
+      type: Sequelize.DATEONLY,
+      allowNull: false
+    }
+  }, {
+    // options
+  });
 

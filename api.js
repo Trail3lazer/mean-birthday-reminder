@@ -12,6 +12,9 @@ module.exports = (app) => {
         })
         .post('/api/birthday', (req, res) => {
             let record = req.body;
+            let date = record.dd+'/'+record.mm+'/'+record.yyyy
+            delete record.dd, record.mm, record.yyyy;
+            record.date = date;
             db.birthday.forge(record).save().then((model) => {
                 res.json(model)
             }).catch(err => console.log(err));

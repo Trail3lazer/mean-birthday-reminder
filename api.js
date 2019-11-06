@@ -1,4 +1,5 @@
 let { db } = require('./server')
+const { Op } = require('sequelize');
 
 const str = (value) => {
     return JSON.stringify(value);
@@ -10,10 +11,10 @@ module.exports = (app) => {
 
     app.get('/api/birthday', (req, res) => {
         db.birthday.findAll().then((result) => {
-            console.log(result[result.length-1].date)
+            console.log(result[result.length - 1].date)
             res.send(str(result))
         }).catch(err => console.log(err));
-        })
+    })
         .get('/api/birthday/:id', (req, res) => {
             db.birthday.findAll({
                 where: {
@@ -25,7 +26,7 @@ module.exports = (app) => {
         })
         .post('/api/birthday', (req, res) => {
             let record = req.body;
-            let date = record.mm+'/'+record.dd+'/'+record.yyyy
+            let date =  record.yyyy + '-' + record.mm + '-' + record.dd
             record.date = date;
             delete record.dd, record.mm, record.yyyy;
             db.birthday.create(record).then((model) => {
@@ -55,13 +56,30 @@ module.exports = (app) => {
         })
         .post(`/api/users/authenticate`, async (req, res) => {
             let record = req.body;
-            let user = await db.user.findAll({where:{name: record.name}})
-            if(user.length === 0){
+            db.user.findAll({ where: { name: record.name } }).then(user=>{
+                if (user.length>0){
+                    res.send(str(user[0]));
+                } else {
+                    res.send(str(false))
+                }
+            })   
+        })
+
+        .post(`/api/users/signup`, async (req, res) => {
+            let record = req.body;
+            let existingUsers = await db.user.findAll({
+                where: {
+                    [Op.or]: [
+                        { 'name': record.name }, { 'email': record.email }
+                    ]
+                }
+            })
+            if (existingUsers.length === 0) {
                 db.user.create(record).then((result) => {
                     res.send(str(result))
                 }).catch(err => console.log(err));
             } else {
-                res.send(str(user[0]));
+                res.send(str(false));
             }
         })
 }

@@ -6,17 +6,13 @@ module.exports = sequelize.define('user', {
       type: Sequelize.STRING,
       allowNull: false
     },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
     password: {
       type: Sequelize.STRING,
       allowNull: false
     },
     date: {
-      type: Sequelize.DATEONLY,
-      allowNull: false
+      type: Sequelize.STRING,
+      allowNull: true
     }
   }, {
     // options

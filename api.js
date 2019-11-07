@@ -1,5 +1,6 @@
-let { db } = require('./server')
+let { db } = require('./server');
 const { Op } = require('sequelize');
+const dateParse = require('./controller/birthdayArrayController')
 
 const str = (value) => {
     return JSON.stringify(value);
@@ -20,13 +21,15 @@ module.exports = (app) => {
                 where: {
                     userId: req.params.id
                 }
-            }).then((result) => {
-                res.send(str(result))
+            }).then(result => {
+                let dateArr;
+                dateParse(result, arr => dateArr = arr)
+                res.send(str(dateArr))
             }).catch(err => console.log(err));
         })
         .post('/api/birthday', (req, res) => {
             let record = req.body;
-            let date =  record.yyyy + '-' + record.mm + '-' + record.dd
+            let date = record.yyyy + '-' + record.mm + '-' + record.dd
             record.date = date;
             delete record.dd, record.mm, record.yyyy;
             db.birthday.create(record).then((model) => {
@@ -43,6 +46,12 @@ module.exports = (app) => {
             }).catch(err => console.log(err));
         })
 
+        // SMS
+
+        .get('/api/sms/:id',( req, res )=>{
+            
+        })
+
         // USERS TABLE
 
         .get('/api/users/:id', (req, res) => {
@@ -56,13 +65,13 @@ module.exports = (app) => {
         })
         .post(`/api/users/authenticate`, async (req, res) => {
             let record = req.body;
-            db.user.findAll({ where: { name: record.name } }).then(user=>{
-                if (user.length>0){
+            db.user.findAll({ where: { name: record.name } }).then(user => {
+                if (user.length > 0) {
                     res.send(str(user[0]));
                 } else {
                     res.send(str(false))
                 }
-            })   
+            })
         })
 
         .post(`/api/users/signup`, async (req, res) => {

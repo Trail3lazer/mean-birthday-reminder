@@ -13,7 +13,12 @@ module.exports = sequelize.define('user', {
     date: {
       type: Sequelize.STRING,
       allowNull: true
-    }
+    },
+    phone: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+
   }, {
     // options
   });

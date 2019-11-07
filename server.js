@@ -38,4 +38,5 @@ app.get('/*',(req, res)=>{
     console.log("🌎 Listening at http://localhost:%s/ ", PORT);
   });
 
+  require('./controller/ScheduledMessage')()
 

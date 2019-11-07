@@ -25,7 +25,12 @@ module.exports = sequelize.define('birthday', {
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false
-    }
+    },
+    sms: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        default: false
+      },
   }, {
     // options
   });

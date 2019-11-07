@@ -24,7 +24,9 @@ module.exports.db = require('./models')
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("client/dist/ngBootstrap"));
+app.use(express.static("client/dist"));
+
+
 
 // Route Calls
 require("./api")(app)

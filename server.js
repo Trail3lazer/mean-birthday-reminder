@@ -31,7 +31,7 @@ app.use(express.static("client/dist"));
 // Route Calls
 require("./api")(app)
 app.get('/*',(req, res)=>{
-    res.send(path.join(__dirname,'index.html'))
+    res.sendFile(path.join(__dirname, './client/dist/ngBootstrap/index.html'))
 })
 
 // Start up

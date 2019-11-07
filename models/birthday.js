@@ -28,7 +28,7 @@ module.exports = sequelize.define('birthday', {
     },
     sms: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
         default: false
       },
   }, {

@@ -14,7 +14,7 @@ const sms = (numbers, messages) => {
     axios.post('https://rest-api.d7networks.com/secure/sendbatch', {'messages':messageArr}, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic amFyZTk5MDQ6TEJGUXkyN1E='
+            'Authorization': process.env.DS7
         }
     }).then(value=>console.log(value.status)).catch(err=>console.log(err))
 }

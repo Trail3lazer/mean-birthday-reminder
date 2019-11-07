@@ -1,0 +1,58 @@
+<div class="jumbotron container shadow bg-light">
+        <h2>Sign Up</h2>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div *ngIf="name.errors.minlength">
+                    Name must be at least 4 characters long.
+                </div>
+    
+            </div>
+    
+            <input type="text" ngModel #name='ngModel' name="name" class="form-control" placeholder="username"
+            required minlength="4">
+
+            <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+                <div *ngIf="pass.errors.required">
+                    Password is required.
+                </div>
+                <div *ngIf="pass.errors.minlength">
+                    Password must be at least 4 characters long.
+                </div>
+                <div *ngIf="pass.errors.forbiddenpass">
+                    Password must be unique.
+                </div>
+            </div>
+
+            <input type="password" ngModel #pass="ngModel" name='password' class="form-control" placeholder="password"
+            required minlength="4" appForbiddenName="password">
+
+            <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+                    <div *ngIf="date.errors.required">
+                        Birthday is required.
+                    </div>
+            </div>
+            
+            <input type="date" ngModel #date="ngModel" name='date' class="form-control" placeholder="birthdate"
+            required minlength="8">
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email is required.
+                    </div>
+            </div>
+
+            <input type="email" ngModel #email="ngModel" name='email' class="form-control" placeholder="email"
+            required>
+    
+            <div *ngIf="newUser === false" class="alert alert-danger">
+                Someone has already signed up using that email or username.
+            </div>
+
+            <button type="submit" class="btn btn-outline-success col-3 form-control">Log In</button>
+        </form>
+    
+    </div>

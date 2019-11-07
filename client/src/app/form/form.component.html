@@ -1,0 +1,33 @@
+<div class="holder container jumbotron pt-2 mt-5 bg-white col-md-6">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate id="birthdayForm">
+        <div class="form-row">
+            <div class="col-md">
+                <input type="text" ngModel name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="col-md">
+                <input type="text" ngModel name="candy" class="form-control" placeholder="Favorite Candy">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                <input type="text" ngModel name="relation" class="form-control" placeholder="Relation">
+            </div>
+            <div class="col-md-2">
+                    <input type="text" ngModel name="mm" class="form-control" placeholder="MM">
+                </div>
+            <div class="col-md-2">
+                <input type="text" ngModel name="dd" class="form-control" placeholder="DD">
+            </div>
+            <div class="col-md-4">
+                <input type="text" ngModel name= "yyyy" class="form-control" placeholder="YYYY">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                <input type="text" ngModel name="hobbies" class="form-control" placeholder="Hobbies">
+            </div>
+        </div>
+        <button type="submit" class="btn form-control btn-outline-secondary" 
+        (click)="this.isActive = !isActive;">Save</button>
+    </form>
+</div>

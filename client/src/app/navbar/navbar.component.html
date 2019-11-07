@@ -1,0 +1,9 @@
+<nav class="navbar shadow navbar-expand-lg navbar-light bg-light mb-4">
+    <a routerLink="/" class="navbar-brand mb-0 h1">Birthday Saver</a>
+    <a *ngIf="!checkForUser(); else elseBlock" routerLink="/login" class="nav-link float-right">Log In</a>
+    <a *ngIf="!checkForUser()" routerLink="/signup" class="nav-link float-right">Sign Up</a>
+    <ng-template #elseBlock>
+        <a (click)="logout()" class="btn logout float-right">Log Out</a>
+    </ng-template> 
+</nav>
+<div class="container-fluid p-4 mb-5"> Hola </div>

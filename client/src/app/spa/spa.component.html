@@ -1,0 +1,11 @@
+<div *ngIf="!checkForUser(); else elseBlock" routerLink="/login"
+    id="coolLink" class="jumbotron text-center container col-md-6 shadow">
+    This is THE Birthday Reminder. Please log in or sign up so that your personal info is personal.
+</div>
+<ng-template #elseBlock>
+    <app-paper></app-paper>
+    <app-form></app-form>
+    <app-table></app-table>
+</ng-template>
+
+<div></div>

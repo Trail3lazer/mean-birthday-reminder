@@ -1,0 +1,26 @@
+<div class="container jumbotron shadow bg-light">
+    <table class="table table-borderless table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Birthday</th>
+                <th scope="col">Name</th>
+                <th scope="col">Turning</th>
+                <th scope="col">Time to B-day</th>
+                <th scope="col">Relation</th>
+                <th scope="col">Favorite Candy</th>
+                <th scope="col">Hobbies</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bday of birthdays | async">
+                <th scope="row">{{bday.date}}</th>
+                <td>{{bday['name']}}</td>
+                <td>{{bday['age']}}</td>
+                <td>{{bday['timeToBday']}}</td>
+                <td>{{bday['relation']}}</td>
+                <td>{{bday['candy']}}</td>
+                <td>{{bday["hobbies"]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
